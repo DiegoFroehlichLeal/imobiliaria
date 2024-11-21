@@ -1,0 +1,70 @@
+:root{
+    --cor-primaria: #00AEEF;
+    --cor-secundaria: #D8D8D8;
+    --cor-terciaria: #222831;
+    --cor-sombra-azul: #00afef85;
+}
+
+
+
+
+body {
+    font-family: Arial, sans-serif;
+    background: url(/uploads/freepik__expand__6719-min.png) no-repeat top/contain;
+
+}
+
+header {
+    background-color: var(--cor-primaria);
+    color: white;
+    opacity: 0.6;
+}
+
+.hero {
+
+    
+    color: white;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    
+}
+
+.filters-section {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: -50px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.property-card img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.property-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    transition: box-shadow 0.3s;
+}
+
+.card:hover {
+    box-shadow: 5px 5px 5px var(--cor-sombra-azul);
+    scale: 1.05;
+}
+
+.btn-primary{
+    background-color: var(--cor-primaria);
+    border-color: var(--cor-primaria);
+}
+
+
+footer {
+    background-color: var(--cor-primaria);
+    color: white;
+    padding: 20px 0;
+}
