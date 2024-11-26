@@ -1,20 +1,19 @@
 <?php
-function uploadImagem($file)
+function uploadImagem($file, $pasta)
 {
-    $targetDir = "uploads/";
-    $targetFile = $targetDir . basename($file["name"]);
+    $targetFile = $pasta . '/' . basename($file["name"]);
     if (move_uploaded_file($file["tmp_name"], $targetFile)) {
         return $targetFile;
     }
     return null;
 }
 
-function uploadMultiplasImagens($files)
+function uploadMultiplasImagens($files, $pasta)
 {
     $uploadedFiles = [];
     foreach ($files['name'] as $index => $name) {
         $tmpName = $files['tmp_name'][$index];
-        $targetFile = "uploads/" . basename($name);
+        $targetFile = $pasta . '/' . basename($name);
         if (move_uploaded_file($tmpName, $targetFile)) {
             $uploadedFiles[] = $targetFile;
         }

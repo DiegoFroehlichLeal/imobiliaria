@@ -1,12 +1,11 @@
 <?php
-require 'includes/db.php';
+require_once 'includes/db.php';
 
-// Verifica se o ID foi passado
-if (!isset($_GET['id'])) {
+$id = $_GET['id'] ?? null;
+
+if (!$id) {
     die("ID do imóvel não fornecido.");
 }
-
-$id = $_GET['id'];
 
 // Busca o imóvel
 $sql = "SELECT * FROM imoveis WHERE id = $id";
@@ -25,14 +24,16 @@ foreach ($imagens as $img) {
     @unlink($img);
 }
 
-// Remove o imóvel do banco
-$sql = "DELETE FROM imoveis WHERE id = $id";
+// Exclui o imóvel do banco de dados
+$stmt = $conn->prepare('DELETE FROM imoveis WHERE id = ?');
+$stmt->bind_param('i', $id);
 
-if ($conn->query($sql) === TRUE) {
+if ($stmt->execute()) {
     echo "Imóvel excluído com sucesso!";
+    // Redireciona para a página de administração após a exclusão
     header("Location: admin.php");
-    exit();
+    exit;
 } else {
-    echo "Erro: " . $conn->error;
+    echo "Erro ao excluir imóvel: " . $conn->error;
 }
 ?>
