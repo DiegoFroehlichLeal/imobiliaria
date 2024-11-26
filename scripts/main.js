@@ -8,27 +8,118 @@ document.addEventListener('DOMContentLoaded', async () => {
         const properties = await response.json();
 
         propertiesContainer.innerHTML = '';
+        propertiesContainer.classList.add('d-flex', 'flex-wrap', 'justify-content-center');
+
         properties.forEach(property => {
             propertiesContainer.innerHTML += `
-                <div class="col-md-4">
-                    <div class="card" style="width: 18rem;">
-                        <img src="${property.imagem_principal}" class="card-img-top" alt="${property.titulo}" style= "height: 300px;">
-                        <div class="card-body">
-                            <h5 class="card-title">${property.titulo}</h5>
-                            <p class="card-text">
-                                <i class="fa-solid fa-bed"></i> ${property.quartos}| <i class="fa-solid fa-bath"></i> ${property.banheiros} | <i class="fa-solid fa-ruler-combined"></i> ${property.tamanho}m²<br>
-                                ${property.bairro}, ${property.cidade}<br>
-                                <strong>R$ ${property.preco}</strong>
-                            </p>
-                            <a href="#" class="btn btn-primary">Ver informações</a>
+                <div class="card property-card" data-id="${property.id}">
+                    <!-- Seção da imagem -->
+                    <div class="card-image">
+                        <img src="${property.imagem_principal}" alt="${property.titulo}">
+                    </div>
+                    <!-- Seção do conteúdo -->
+                    <div class="card-content">
+                        <!-- Primeira linha: Título e Código -->
+                        <h5 class="property-title">
+                            ${property.titulo}
+                            <span>Cód: ${property.id}</span>
+                        </h5>
+                        <!-- Segunda linha: Quartos, Banheiros, Vagas, Tamanho -->
+                        <div class="property-features">
+                            <span><i class="fa fa-bed"></i> ${property.quartos}</span>
+                            <span><i class="fa fa-bath"></i> ${property.banheiros}</span>
+                            <span><i class="fa fa-car"></i> ${property.vagas}</span>
+                            <span><i class="fa fa-ruler-combined"></i> ${property.tamanho} m²</span>
+                        </div>
+                        <!-- Terceira linha: Bairro -->
+                        <div class="property-location">
+                            <span>${property.bairro}</span>
+                        </div>
+                        <!-- Quarta linha: Cidade -->
+                        <div class="property-location">
+                            <span>${property.cidade}</span>
+                        </div>
+                        <!-- Última linha: Preço -->
+                        <div class="property-price">
+                            <button class="btn btn-primary">R$ ${property.preco}</button>
                         </div>
                     </div>
                 </div>
             `;
         });
+
+        // Adiciona evento de clique nos cards
+        document.querySelectorAll('.property-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const propertyId = card.getAttribute('data-id');
+                showPropertyDetails(propertyId);
+            });
+        });
     }
 
-    // Carrega imóveis ao carregar a página
+    async function showPropertyDetails(id) {
+        const response = await fetch(`property_details.php?id=${id}`);
+        const property = await response.json();
+
+        // Cria o conteúdo do modal
+        const modalContent = `
+            <div class="modal fade" id="propertyModal" tabindex="-1" aria-labelledby="propertyModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="propertyModalLabel">${property.titulo}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                        </div>
+                        <div class="modal-body">
+                            <!-- Carrossel de imagens -->
+                            <div id="carouselImages" class="carousel slide" data-bs-ride="carousel">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img src="${property.imagem_principal}" class="d-block w-100" alt="${property.titulo}">
+                                    </div>
+                                    ${property.imagens.map(img => `
+                                        <div class="carousel-item">
+                                            <img src="${img}" class="d-block w-100" alt="${property.titulo}">
+                                        </div>
+                                    `).join('')}
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselImages" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Anterior</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselImages" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Próximo</span>
+                                </button>
+                            </div>
+                            <!-- Detalhes do imóvel -->
+                            <p class="mt-3">${property.descricao}</p>
+                            <ul>
+                                <li>Quartos: ${property.quartos}</li>
+                                <li>Banheiros: ${property.banheiros}</li>
+                                <li>Tamanho: ${property.tamanho} m²</li>
+                                <li>Vagas de Garagem: ${property.vagas}</li>
+                                <li>Endereço: ${property.endereco}, ${property.bairro}, ${property.cidade}</li>
+                                <li>Preço: R$ ${property.preco}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        // Adiciona o modal ao DOM e exibe
+        document.body.insertAdjacentHTML('beforeend', modalContent);
+        const propertyModal = new bootstrap.Modal(document.getElementById('propertyModal'));
+        propertyModal.show();
+
+        // Remove o modal do DOM após ser fechado
+        document.getElementById('propertyModal').addEventListener('hidden.bs.modal', function () {
+            this.remove();
+        });
+    }
+
+    // Carrega os imóveis ao iniciar
     loadProperties();
 
     // Aplica filtros ao formulário
@@ -39,4 +130,3 @@ document.addEventListener('DOMContentLoaded', async () => {
         loadProperties(filters);
     });
 });
-

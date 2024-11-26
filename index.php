@@ -33,11 +33,16 @@
     <p>Os melhores imóveis estão aqui</p>
   </div>
 
+
+
   <!-- Filtro de busca -->
   <div class="container filters-section">
     <h3 class="text-center mb-4">Busque seu imóvel</h3>
     <form id="filter-form">
       <div class="row g-3">
+        <div class="col-md-4">
+          <input type="number" class="form-control" name="codigo" placeholder="Código do Imóvel">
+        </div>
         <div class="col-md-4">
           <input type="text" class="form-control" name="cidade" placeholder="Cidade">
         </div>
@@ -51,7 +56,6 @@
           <input type="number" class="form-control" name="quartos" placeholder="Quartos">
         </div>
         <div class="col-md-4">
-          
           <input type="number" class="form-control" name="banheiros" placeholder="Banheiros">
         </div>
         <div class="col-md-4">
@@ -66,6 +70,29 @@
         <button type="submit" class="btn btn-primary">Buscar</button>
       </div>
     </form>
+  </div>
+
+    <!-- Seção de banners de destaque -->
+  <div id="featuredBanners" class="carousel slide my-5 mx-auto" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="banners/banner1.jpg" class="d-block w-100" alt="Banner 1">
+      </div>
+      <div class="carousel-item">
+        <img src="banners/banner2.jpg" class="d-block w-100" alt="Banner 2">
+      </div>
+      <div class="carousel-item">
+        <img src="banners/banner3.jpg" class="d-block w-100" alt="Banner 3">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#featuredBanners" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Anterior</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#featuredBanners" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Próximo</span>
+    </button>
   </div>
 
   <!-- Lista de imóveis -->
