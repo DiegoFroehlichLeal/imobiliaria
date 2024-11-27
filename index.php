@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="resources/LOGO500X500.png" type="image/x-icon">
     <title>Imobiliária</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -15,25 +16,13 @@
 </head>
 
 <body>
-  <!-- Cabeçalho -->
-  <header class="py-3">
-    <div class="container d-flex justify-content-between align-items-center">
-      <h1 class="h4 m-0">Imobiliária</h1>
-      <nav>
-        <a href="#" class="text-white text-decoration-none me-3">Home</a>
-        <a href="#" class="text-white text-decoration-none me-3">Sobre</a>
-        <a href="#" class="text-white text-decoration-none">Contato</a>
-      </nav>
-    </div>
-  </header>
+<?php include 'templates/header.php'; ?>
 
   <!-- Hero Section -->
   <div class="hero text-center">
     <h2>Encontre o imóvel dos seus sonhos</h2>
     <p>Os melhores imóveis estão aqui</p>
   </div>
-
-
 
   <!-- Filtro de busca -->
   <div class="container filters-section">
@@ -72,7 +61,7 @@
     </form>
   </div>
 
-    <!-- Seção de banners de destaque -->
+  <!-- Seção de banners de destaque -->
   <div id="featuredBanners" class="carousel slide my-5 mx-auto" data-bs-ride="carousel">
     <div class="carousel-inner">
       <div class="carousel-item active">
@@ -103,14 +92,7 @@
     </div>
   </div>
 
-  <!-- Rodapé -->
-  <footer class="text-center">
-    <div class="container">
-      <p class="m-0">© 2024 Imobiliária. Todos os direitos reservados.</p>
-      <p>Endereço: Rua Exemplo, 123 - Cidade/Estado | Telefone: (99) 9999-9999</p>
-    </div>
-  </footer>
+<?php include 'templates/footer.php'; ?>
 </body>
-
 
 </html>

@@ -1,19 +1,11 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/styles.css">
-    <title>Imobiliária</title>
-</head>
-
-<body>
-    <header>
-        <h1>Imobiliária</h1>
+<header>
+    <div class="header-container">
+        <img src="resources/LOGO500X500.png" alt="Logo Imobiliária" class="logo"> <!-- Adicione o caminho para o logo -->
+        <img src="resources/whatsapp.png" alt="Logo Imobiliária" class="logo">
         <nav>
             <a href="index.php">Início</a>
-            <a href="admin.php">Administração</a>
+            <a href="#">Sobre</a>
+            <a href="#">Contatos</a>
         </nav>
-    </header>
-    <main>
+    </div>
+</header>
