@@ -5,39 +5,89 @@
     --cor-sombra-azul: #00afef85;
 }
 
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
 
-
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
 
 body {
-    font-family: Arial, sans-serif;
-    background: url(/uploads/fundoHeader.png) no-repeat top/contain;
-
+    font-family: Montserrat, sans-serif;
+    font-weight: 500;
+    margin: 0;
+    padding: 0;
+    /* Remove as propriedades de background atuais */
 }
 
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('/resources/fundoHeaderDireita.png') center center / cover no-repeat;
+    opacity: 0.5; /* Ajuste a opacidade conforme necessário */
+    z-index: -1; /* Certifica-se de que fique atrás do conteúdo */
+}
+
+/* Estilos para o header */
 header {
-    background-color: var(--cor-primaria);
-    color: white;
-    opacity: 0.6;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: rgba(0, 174, 239, 0.4);
+    color: var(--cor-terciaria);
     align-items: flex-end;
+    /* Outras propriedades existentes */
 }
 
+/* Estilos para a hero section */
 .hero {
-
-    
-    color: white;
-    height: 400px;
+    position: relative;
+    z-index: 900;
+    text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    
+    padding-top: 200px;
+    /* Outras propriedades existentes */
 }
 
+.hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 300px;
+    /* Fundo semitransparente para melhor contraste */
+    /* background-color: rgba(0, 0, 0, 0.3); */
+    z-index: 0;
+}
+
+.hero h2,
+.hero p {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Adiciona sombra ao texto */
+    z-index: 1; /* Garante que o texto fique acima da imagem de fundo */
+}
+
+/* Estilos para o filters-section */
 .filters-section {
+    position: relative;
+    /* z-index: 1100; */
     background: var(--cor-secundaria);
     padding: 20px;
     border-radius: 8px;
-    margin-top: -50px;
+    /* margin-top: -50px; */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -129,11 +179,30 @@ header {
     border-color: var(--cor-primaria);
 }
 
+.wrapper {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
 
+/* Conteúdo da página */
+.content {
+    flex: 1;
+    margin-top: 100px;    /* Altura do header */
+    margin-bottom: 60px;  /* Altura do footer */
+}
+
+/* Estilos para o footer */
 footer {
+    /* position: fixed; */
+    bottom: 0;
+    width: 100%;
+    z-index: 1000;
     background-color: var(--cor-primaria);
-    color: rgb(255, 255, 255);
-    padding: 20px 0;
+    color: var(--cor-terciaria);
+    text-align: center;
+    padding: 10px 0;
+    /* Outras propriedades existentes */
 }
 
 /* Estilização do banner */
@@ -154,6 +223,18 @@ footer {
     .property-card {
         width: 100%;
         max-width: 100%;
+    }
+    .sobre-container {
+        width: 90%;          /* Aumenta a largura em telas menores */
+        margin-left: auto;
+        margin-right: auto;  /* Centraliza o container */
+    }
+    .hero h2 {
+        font-size: 1.5rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
     }
 }
 
@@ -178,8 +259,9 @@ footer {
 }
 
 .logo {
-    height: 50px; /* Ajuste a altura conforme necessário */
+    height: 100px; /* Ajuste a altura conforme necessário */
     margin-right: 15px; /* Espaçamento entre o logo e o título */
+    opacity: 1;
 }
 
 nav {
@@ -191,4 +273,34 @@ nav a {
     color: white;
     text-decoration: none;
     font-weight: bold;
+}
+
+/* Estilo para a página Sobre */
+.sobre-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.sobre-container h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.sobre-container p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.sobre-container ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+/* Estilo para o container da página Sobre */
+.sobre-container {
+    width: 30%;          /* Define a largura como 40% */
+    margin-left: 5%;     /* Margem à esquerda */
+    margin-right: auto;  /* Remove a margem à direita */
+    padding: 20px;
 }

@@ -4,7 +4,7 @@
         <img src="resources/whatsapp.png" alt="Logo Imobiliária" class="logo">
         <nav>
             <a href="index.php">Início</a>
-            <a href="#">Sobre</a>
+            <a href="sobre.php">Sobre</a>
             <a href="#">Contatos</a>
         </nav>
     </div>
