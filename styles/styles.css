@@ -1,52 +1,30 @@
-:root{
+:root {
     --cor-primaria: #00AEEF;
     --cor-secundaria: #D8D8D8;
     --cor-terciaria: #222831;
     --cor-sombra-azul: #00afef85;
+    --cor-cinza: #495057;
+
 }
 
-html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-}
-
-body, html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-}
-
+html,
 body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
     font-family: Montserrat, sans-serif;
     font-weight: 500;
-    margin: 0;
-    padding: 0;
-    /* Remove as propriedades de background atuais */
 }
 
-body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url('/resources/fundoHeaderDireita.png') center center / cover no-repeat;
-    opacity: 0.5; /* Ajuste a opacidade conforme necessário */
-    z-index: -1; /* Certifica-se de que fique atrás do conteúdo */
-}
 
 /* Estilos para o header */
 header {
     position: fixed;
     top: 0;
-    width: 100%;
+    width: 100vw;
     z-index: 1000;
-    background-color: rgba(0, 174, 239, 0.4);
-    color: var(--cor-terciaria);
+    background-color: var(--cor-cinza);
     align-items: flex-end;
-    /* Outras propriedades existentes */
 }
 
 /* Estilos para a hero section */
@@ -76,8 +54,10 @@ header {
 
 .hero h2,
 .hero p {
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Adiciona sombra ao texto */
-    z-index: 1; /* Garante que o texto fique acima da imagem de fundo */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    /* Adiciona sombra ao texto */
+    z-index: 1;
+    /* Garante que o texto fique acima da imagem de fundo */
 }
 
 /* Estilos para o filters-section */
@@ -105,7 +85,8 @@ header {
     border: 1px solid #ddd;
     border-radius: 8px;
     overflow: hidden;
-    margin: 10px; /* Margem ao redor do card */
+    margin: 10px;
+    /* Margem ao redor do card */
 }
 
 .property-card:hover {
@@ -113,7 +94,8 @@ header {
 }
 
 .property-card .card-image {
-    flex: 0 0 60%; /* 60% da altura do card */
+    flex: 0 0 60%;
+    /* 60% da altura do card */
     overflow: hidden;
 }
 
@@ -128,8 +110,10 @@ header {
     padding: 10px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end; /* Alinha na parte inferior */
-    text-align: left; /* Alinha o texto à esquerda */
+    justify-content: flex-end;
+    /* Alinha na parte inferior */
+    text-align: left;
+    /* Alinha o texto à esquerda */
 }
 
 .property-title {
@@ -153,15 +137,16 @@ header {
 }
 
 .property-price {
-    text-align: center;           /* Centraliza o texto */
+    text-align: center;
+    /* Centraliza o texto */
     margin-top: 10px;
-              /* Espaçamento superior opcional */
+    /* Espaçamento superior opcional */
 }
 
 .property-price .btn {
     width: auto;
     margin: 0 auto;
-                 /* Centraliza o botão */
+    /* Centraliza o botão */
 }
 
 .card:hover {
@@ -174,7 +159,7 @@ header {
     object-fit: cover;
 }
 
-.btn-primary{
+.btn-primary {
     background-color: var(--cor-primaria);
     border-color: var(--cor-primaria);
 }
@@ -188,8 +173,10 @@ header {
 /* Conteúdo da página */
 .content {
     flex: 1;
-    margin-top: 100px;    /* Altura do header */
-    margin-bottom: 60px;  /* Altura do footer */
+    margin-top: 100px;
+    /* Altura do header */
+    margin-bottom: 60px;
+    /* Altura do footer */
 }
 
 /* Estilos para o footer */
@@ -207,66 +194,56 @@ footer {
 
 /* Estilização do banner */
 #featuredBanners {
-  max-width: 70%;
-  max-height: 400px;
+    max-width: 70%;
+    max-height: 400px;
 }
 
 #featuredBanners .carousel-inner img {
-  width: 100%;
-  height: auto;
+    width: 100%;
+    height: auto;
 }
 
-@media (max-width: 768px) {
-  #featuredBanners {
-    max-width: 100%;
-  }
-    .property-card {
-        width: 100%;
-        max-width: 100%;
-    }
-    .sobre-container {
-        width: 90%;          /* Aumenta a largura em telas menores */
-        margin-left: auto;
-        margin-right: auto;  /* Centraliza o container */
-    }
-    .hero h2 {
-        font-size: 1.5rem;
-    }
 
-    .hero p {
-        font-size: 1rem;
-    }
-}
 
 /* Segunda linha: características */
 .property-features {
     display: flex;
-    justify-content: center;      /* Centraliza horizontalmente */
-    align-items: center;          /* Alinha verticalmente */
-    gap: 20px;                    /* Espaçamento entre os itens */
-    flex-wrap: nowrap;            /* Impede quebras de linha */
+    justify-content: center;
+    /* Centraliza horizontalmente */
+    align-items: center;
+    /* Alinha verticalmente */
+    gap: 20px;
+    /* Espaçamento entre os itens */
+    flex-wrap: nowrap;
+    /* Impede quebras de linha */
     font-size: 0.9rem;
     margin-bottom: 5px;
-    width: 100%;                  /* Ocupa toda a largura do card */
+    width: 100%;
+    /* Ocupa toda a largura do card */
 }
 
 /* Estilos para o cabeçalho */
 .header-container {
     display: flex;
     align-items: center;
-    justify-content: space-between; /* Espaça os itens para os extremos */
-    padding: 10px 20px; /* Adiciona padding para espaçamento */
+    justify-content: space-between;
+    /* Espaça os itens para os extremos */
+    padding: 10px 20px;
+    /* Adiciona padding para espaçamento */
 }
 
 .logo {
-    height: 100px; /* Ajuste a altura conforme necessário */
-    margin-right: 15px; /* Espaçamento entre o logo e o título */
+    height: 100px;
+    /* Ajuste a altura conforme necessário */
+    margin-right: 15px;
+    /* Espaçamento entre o logo e o título */
     opacity: 1;
 }
 
 nav {
     display: flex;
-    gap: 15px; /* Espaçamento entre os links de navegação */
+    gap: 15px;
+    /* Espaçamento entre os links de navegação */
 }
 
 nav a {
@@ -299,8 +276,47 @@ nav a {
 
 /* Estilo para o container da página Sobre */
 .sobre-container {
-    width: 30%;          /* Define a largura como 40% */
-    margin-left: 5%;     /* Margem à esquerda */
-    margin-right: auto;  /* Remove a margem à direita */
+    width: 30%;
+    /* Define a largura como 40% */
+    margin-left: 5%;
+    /* Margem à esquerda */
+    margin-right: auto;
+    /* Remove a margem à direita */
     padding: 20px;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    #featuredBanners {
+        max-width: 100%;
+    }
+
+    .property-card {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .sobre-container {
+        width: 90%;
+        /* Aumenta a largura em telas menores */
+        margin-left: auto;
+        margin-right: auto;
+        /* Centraliza o container */
+    }
+
+    .hero h2 {
+        font-size: 1.5rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    nav a {
+
+        gap: 11px;
+
+
+
+    }
 }
