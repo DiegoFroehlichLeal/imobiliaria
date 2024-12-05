@@ -234,10 +234,7 @@ footer {
 
 .logo {
     height: 100px;
-    /* Ajuste a altura conforme necessário */
     margin-right: 15px;
-    /* Espaçamento entre o logo e o título */
-    opacity: 1;
 }
 
 nav {
@@ -287,6 +284,24 @@ nav a {
 
 /* Mobile */
 @media (max-width: 768px) {
+    .header-container {
+        padding: 0px;
+        box-sizing: content-box;
+        width: 100vw;
+    }
+
+    .header-contacts {
+        display: flex;
+        justify-content: space-evenly;
+        margin: 10px;
+    
+    }
+    .header-contacts p {
+        margin: 0px;
+        color: var(--cor-secundaria);
+        
+    }
+
     #featuredBanners {
         max-width: 100%;
     }
@@ -312,11 +327,15 @@ nav a {
         font-size: 1rem;
     }
 
-    nav a {
-
+    nav {
+        padding-right: 11px;
         gap: 11px;
-
-
-
     }
+
+    .logo {
+        padding: 5px 5px;
+        margin: 0px;
+    }
+
+
 }

@@ -6,4 +6,9 @@
             <a href="sobre.php">Sobre</a>
         </nav>
     </div>
+    <div class="header-contacts">
+        <p><i class="fa-brands fa-whatsapp"></i>(11) 99999-9999</p>
+        <p><i class="fa-solid fa-phone"></i>(11) 99999-9999</p>
+
+    </div>
 </header>
