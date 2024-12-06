@@ -1,1 +1,24 @@
+# Arquivos de ambiente
 .env
+
+# Dependências do Composer
+/vendor/
+
+# Configurações do IDE
+/.idea/
+/*.iml
+
+# Diretório de uploads
+
+
+# Cache e Logs
+/cache/
+*.log
+
+# Arquivos de sistema
+Thumbs.db
+.DS_Store
+
+# Arquivos temporários e backups
+*.tmp
+*.bak
