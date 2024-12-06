@@ -14,19 +14,53 @@ body {
     padding: 0;
     font-family: Montserrat, sans-serif;
     font-weight: 500;
+    background-image: url('/resources/fundo.jpeg');
+    background-repeat: no-repeat;
 }
 
 
 /* Estilos para o header */
-header {
-    position: fixed;
-    top: 0;
-    width: 100vw;
+.header-container {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto;
     z-index: 1000;
     background-color: var(--cor-cinza);
-    align-items: flex-end;
 }
 
+.header-container .grid-item img {
+    margin: 5px;
+    width: 30px;
+    height: 30px;
+}
+
+.header-container p {
+    display: inline;
+    color: white;
+    margin: 0px;
+}
+
+.grid-item:nth-child(2),
+.grid-item:nth-child(4) {
+    align-self: center;
+    text-align: right;
+}
+
+.grid-item:nth-child(3),
+.grid-item:nth-child(5) {
+    text-align: left;
+    align-self: center;
+}
+
+.grid-item:nth-child(6){
+    align-self: center;
+    text-align: right;
+}
+
+#logo {
+    height: 100px;
+    width: 100px;
+    margin-right: 15px;
+}
 /* Estilos para a hero section */
 .hero {
     position: relative;
@@ -36,7 +70,8 @@ header {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    padding-top: 200px;
+    padding-top: 150px;
+    /*background-image: url('/resources/fundo.jpeg');*/
     /* Outras propriedades existentes */
 }
 
@@ -47,28 +82,24 @@ header {
     left: 0;
     width: 100%;
     height: 300px;
-    /* Fundo semitransparente para melhor contraste */
-    /* background-color: rgba(0, 0, 0, 0.3); */
     z-index: 0;
 }
 
-.hero h2,
-.hero p {
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-    /* Adiciona sombra ao texto */
-    z-index: 1;
-    /* Garante que o texto fique acima da imagem de fundo */
+.hero h2 {
+    text-shadow: 2px 2px 2px rgba(0, 0, 0);
+    color: var(--cor-secundaria);
+
 }
 
 /* Estilos para o filters-section */
 .filters-section {
     position: relative;
-    /* z-index: 1100; */
     background: var(--cor-secundaria);
     padding: 20px;
     border-radius: 8px;
-    /* margin-top: -50px; */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-left: 40px;
+    margin-right: 40px;
 }
 
 .property-card img {
@@ -86,7 +117,6 @@ header {
     border-radius: 8px;
     overflow: hidden;
     margin: 10px;
-    /* Margem ao redor do card */
 }
 
 .property-card:hover {
@@ -95,7 +125,6 @@ header {
 
 .property-card .card-image {
     flex: 0 0 60%;
-    /* 60% da altura do card */
     overflow: hidden;
 }
 
@@ -111,9 +140,7 @@ header {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    /* Alinha na parte inferior */
     text-align: left;
-    /* Alinha o texto à esquerda */
 }
 
 .property-title {
@@ -138,15 +165,12 @@ header {
 
 .property-price {
     text-align: center;
-    /* Centraliza o texto */
     margin-top: 10px;
-    /* Espaçamento superior opcional */
 }
 
 .property-price .btn {
     width: auto;
     margin: 0 auto;
-    /* Centraliza o botão */
 }
 
 .card:hover {
@@ -170,18 +194,14 @@ header {
     flex-direction: column;
 }
 
-/* Conteúdo da página */
 .content {
     flex: 1;
     margin-top: 100px;
-    /* Altura do header */
     margin-bottom: 60px;
-    /* Altura do footer */
 }
 
 /* Estilos para o footer */
 footer {
-    /* position: fixed; */
     bottom: 0;
     width: 100%;
     z-index: 1000;
@@ -189,7 +209,6 @@ footer {
     color: var(--cor-terciaria);
     text-align: center;
     padding: 10px 0;
-    /* Outras propriedades existentes */
 }
 
 /* Estilização do banner */
@@ -209,44 +228,30 @@ footer {
 .property-features {
     display: flex;
     justify-content: center;
-    /* Centraliza horizontalmente */
     align-items: center;
-    /* Alinha verticalmente */
     gap: 20px;
-    /* Espaçamento entre os itens */
     flex-wrap: nowrap;
-    /* Impede quebras de linha */
     font-size: 0.9rem;
     margin-bottom: 5px;
     width: 100%;
-    /* Ocupa toda a largura do card */
 }
 
 /* Estilos para o cabeçalho */
-.header-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    /* Espaça os itens para os extremos */
-    padding: 10px 20px;
-    /* Adiciona padding para espaçamento */
-}
 
-.logo {
-    height: 100px;
-    margin-right: 15px;
-}
 
 nav {
-    display: flex;
-    gap: 15px;
-    /* Espaçamento entre os links de navegação */
+    padding-right: 10px;
 }
 
 nav a {
+    padding-left: 10px;
     color: white;
     text-decoration: none;
     font-weight: bold;
+}
+
+nav a:hover {
+    color: var(--cor-primaria);
 }
 
 /* Estilo para a página Sobre */
@@ -274,33 +279,82 @@ nav a {
 /* Estilo para o container da página Sobre */
 .sobre-container {
     width: 30%;
-    /* Define a largura como 40% */
     margin-left: 5%;
-    /* Margem à esquerda */
     margin-right: auto;
-    /* Remove a margem à direita */
     padding: 20px;
 }
 
 /* Mobile */
 @media (max-width: 768px) {
+
+
+    body {
+        background-image: url('/resources/fundo.jpeg');
+        background-repeat: no-repeat;
+    }
+
+    .hero h2 {
+        padding-top: 20px;
+        padding-bottom: 30px;
+        font-size: 1.5rem;
+
+    }
+
+    .filters-section {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+
     .header-container {
-        padding: 0px;
-        box-sizing: content-box;
-        width: 100vw;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        margin: 0;
+        padding: 0;
+    }
+
+    .header-container .grid-item-top:nth-child(1) {
+        justify-self: start;
+        margin-left: 5px;
+
+    }
+
+    .header-container .grid-item-top:nth-child(2) {
+        justify-self: end;
+        margin-right: 5px;
+
     }
 
     .header-contacts {
-        display: flex;
-        justify-content: space-evenly;
-        margin: 10px;
-    
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+        align-items: space-evenly;
     }
-    .header-contacts p {
-        margin: 0px;
-        color: var(--cor-secundaria);
-        
+
+    .header-contacts .grid-item {
+        justify-items: center;
+        text-align: center;
+        align-content: center;
     }
+
+    .grid-item:nth-child(1),
+    .grid-item:nth-child(3) {
+        align-self: self-end;
+        text-align: right;
+    }
+
+    .grid-item:nth-child(2),
+    .grid-item:nth-child(4) {
+        text-align: left;
+    }
+
+    .header-contacts .grid-item img {
+        margin: 5px;
+        width: 30px;
+        height: 30px;
+    }
+
+
 
     #featuredBanners {
         max-width: 100%;
@@ -313,19 +367,12 @@ nav a {
 
     .sobre-container {
         width: 90%;
-        /* Aumenta a largura em telas menores */
         margin-left: auto;
         margin-right: auto;
-        /* Centraliza o container */
     }
 
-    .hero h2 {
-        font-size: 1.5rem;
-    }
 
-    .hero p {
-        font-size: 1rem;
-    }
+
 
     nav {
         padding-right: 11px;

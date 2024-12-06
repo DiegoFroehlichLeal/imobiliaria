@@ -22,13 +22,12 @@
 <?php include 'templates/header.php'; ?>
 
   <!-- Hero Section -->
-  <div class="hero text-center">
-    <h2>Encontre o imóvel dos seus sonhos</h2>
-    <p>Os melhores imóveis estão aqui</p>
+  <div class="hero">
+    <h2>A Chave para bons negócios</h2>
   </div>
 
   <!-- Filtro de busca -->
-  <div class="container filters-section">
+  <div class="filters-section">
     <h3 class="text-center mb-4">Busque seu imóvel</h3>
     <form id="filter-form">
       <div class="row g-3">
