@@ -16,18 +16,17 @@ body {
     background-image: url('/resources/fundoMenor.jpeg');
     background-repeat: no-repeat;
     background-size: 100vw;
-
 }
 
-/* Estilos para o header */
 .header-container {
     display: grid;
+    grid-template-columns: auto auto auto auto auto auto;
+    grid-template-areas: "logo contact1 contact1 contact2 contact2 menu";
     align-items: center;
     gap: 10px;
     background-color: var(--cor-cinza);
 }
 
-/* Estilos para os itens */
 .logo img {
     height: 100px;
 }
@@ -50,7 +49,18 @@ body {
     margin-right: 5px;
 }
 
+.contact a img {
+    transition: transform 0.3s ease;
+    /* Transição suave */
+}
+
+.contact a img:hover {
+    transform: scale(1.4);
+    /* Aumenta o tamanho do ícone */
+}
+
 .menu {
+    grid-area: menu;
     justify-self: end;
 }
 
@@ -61,11 +71,6 @@ body {
     margin-left: 40px;
     margin-right: 40px;
     border-radius: 8px;
-}
-
-.header-container {
-    grid-template-columns: auto auto auto auto auto auto;
-    grid-template-areas: "logo contact1 contact1 contact2 contact2 menu";
 }
 
 .logo {
@@ -81,10 +86,6 @@ body {
     grid-area: contact2;
 }
 
-.menu {
-    grid-area: menu;
-}
-
 .hero {
     height: 200px;
 }
@@ -96,7 +97,6 @@ body {
     color: var(--cor-secundaria);
     font-size: 2.5rem;
     text-shadow: 1px 1px 2px black;
-
 }
 
 .card-img-top {
@@ -126,7 +126,6 @@ body {
     margin-bottom: 60px;
 }
 
-/* Estilos para o footer */
 footer {
     background-color: var(--cor-cinza);
     color: var(--cor-secundaria);
@@ -141,13 +140,11 @@ footer {
     flex-wrap: wrap;
     padding-left: 5px;
     padding-right: 5px;
-    /* Permite quebra de linha */
 }
 
 .footer-logo img {
     height: 150px;
     padding-left: 10px;
-    /* Altura da logo */
 }
 
 .footer-info {
@@ -155,7 +152,6 @@ footer {
     padding: 0;
     margin: 0;
     text-align: right;
-    /* Alinha o texto à direita */
 }
 
 .footer-info li {
@@ -163,7 +159,6 @@ footer {
     align-items: center;
     margin-bottom: 5px;
     justify-content: flex-end;
-    /* Alinha os itens à direita */
 }
 
 .footer-info li img {
@@ -172,7 +167,6 @@ footer {
     margin-right: 10px;
 }
 
-/* Estilização para o parágrafo de direitos autorais */
 .footer-container p {
     width: 100%;
     text-align: center;
@@ -180,7 +174,6 @@ footer {
 
 }
 
-/* Estilização do banner */
 #featuredBanners {
     max-width: 70%;
     max-height: 400px;
@@ -270,28 +263,6 @@ nav a:hover {
     color: var(--cor-primaria);
 }
 
-/* Estilo para a página Sobre */
-.sobre-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-.sobre-container h1 {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-}
-
-.sobre-container p {
-    font-size: 1.1rem;
-    line-height: 1.6;
-}
-
-.sobre-container ul {
-    list-style-type: disc;
-    margin-left: 20px;
-}
-
 /* Mobile */
 @media (max-width: 1090px) {
     body {
@@ -329,12 +300,6 @@ nav a:hover {
 
     }
 
-    .sobre-container {
-        width: 90%;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
     .property-card {
         width: 100%;
         max-width: 100%;
@@ -355,7 +320,6 @@ nav a:hover {
     }
 
     .logo {
-       
         margin: 0px;
         grid-area: logo;
     }
@@ -386,23 +350,19 @@ nav a:hover {
     .footer-container {
         flex-direction: column;
         align-items: center;
-        /* Centraliza os itens */
     }
 
     .footer-logo {
         margin-bottom: 20px;
-        /* Espaçamento abaixo da logo */
     }
 
     .footer-info {
         text-align: left;
-        /* Alinha o texto à esquerda */
         align-items: center;
     }
 
     .footer-info li {
         justify-content: flex-start;
-        /* Alinha os itens à esquerda */
     }
 
     .footer-info li img {
