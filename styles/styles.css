@@ -4,7 +4,6 @@
     --cor-terciaria: #222831;
     --cor-sombra-azul: #00afef85;
     --cor-cinza: #495057;
-
 }
 
 html,
@@ -14,100 +13,140 @@ body {
     padding: 0;
     font-family: Montserrat, sans-serif;
     font-weight: 500;
-    background-image: url('/resources/fundo.jpeg');
+    background-image: url('/resources/fundoMenor.jpeg');
     background-repeat: no-repeat;
-}
+    background-size: 100vw;
 
+}
 
 /* Estilos para o header */
 .header-container {
     display: grid;
-    grid-template-columns: auto auto auto auto auto auto;
-    z-index: 1000;
+    align-items: center;
+    gap: 10px;
     background-color: var(--cor-cinza);
 }
 
-.header-container .grid-item img {
-    margin: 5px;
-    width: 30px;
-    height: 30px;
-}
-
-.header-container p {
-    display: inline;
-    color: white;
-    margin: 0px;
-}
-
-.grid-item:nth-child(2),
-.grid-item:nth-child(4) {
-    align-self: center;
-    text-align: right;
-}
-
-.grid-item:nth-child(3),
-.grid-item:nth-child(5) {
-    text-align: left;
-    align-self: center;
-}
-
-.grid-item:nth-child(6){
-    align-self: center;
-    text-align: right;
-}
-
-#logo {
+/* Estilos para os itens */
+.logo img {
     height: 100px;
-    width: 100px;
-    margin-right: 15px;
 }
-/* Estilos para a hero section */
-.hero {
-    position: relative;
-    z-index: 900;
-    text-align: center;
+
+.contact {
     display: flex;
     align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    padding-top: 150px;
-    /*background-image: url('/resources/fundo.jpeg');*/
-    /* Outras propriedades existentes */
+    color: var(--cor-secundaria);
+    justify-self: center;
 }
 
-.hero::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 300px;
-    z-index: 0;
+
+.contact p {
+    margin-top: revert;
+}
+
+.contact img {
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+}
+
+.menu {
+    justify-self: end;
+}
+
+.filters-section {
+    background-color: var(--cor-secundaria);
+    padding-left: 40px;
+    padding-right: 40px;
+    margin-left: 40px;
+    margin-right: 40px;
+    border-radius: 8px;
+}
+
+.header-container {
+    grid-template-columns: auto auto auto auto auto auto;
+    grid-template-areas: "logo contact1 contact1 contact2 contact2 menu";
+}
+
+.logo {
+    grid-area: logo;
+}
+
+.contact:nth-of-type(1) {
+    grid-area: contact1;
+}
+
+.contact:nth-of-type(2) {
+    grid-area: contact2;
+}
+
+.menu {
+    grid-area: menu;
+}
+
+.hero {
+    height: 200px;
 }
 
 .hero h2 {
-    text-shadow: 2px 2px 2px rgba(0, 0, 0);
+    justify-self: center;
+    align-self: center;
+    padding-top: 90px;
     color: var(--cor-secundaria);
+    font-size: 2.5rem;
+    text-shadow: 1px 1px 2px black;
 
 }
 
-/* Estilos para o filters-section */
-.filters-section {
-    position: relative;
-    background: var(--cor-secundaria);
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin-left: 40px;
-    margin-right: 40px;
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
 }
 
-.property-card img {
+.btn-primary {
+    background-color: var(--cor-primaria);
+    border-color: var(--cor-primaria);
+}
+
+.text-center {
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+.wrapper {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.content {
+    flex: 1;
+    margin-top: 100px;
+    margin-bottom: 60px;
+}
+
+/* Estilos para o footer */
+footer {
+    bottom: 0;
     width: 100%;
-    border-radius: 8px;
+    z-index: 1000;
+    background-color: var(--cor-primaria);
+    color: var(--cor-terciaria);
+    text-align: center;
+    padding: 10px 0;
 }
 
-/* Estilos para os cards de propriedades */
+/* Estilização do banner */
+#featuredBanners {
+    max-width: 70%;
+    max-height: 400px;
+}
+
+#featuredBanners .carousel-inner img {
+    width: 100%;
+    height: auto;
+}
+
 .property-card {
     width: 300px;
     height: 450px;
@@ -151,16 +190,10 @@ body {
     justify-content: space-between;
 }
 
-.property-features,
-.property-location {
+.property-features {
     font-size: 0.85rem;
     color: #666;
     margin-bottom: 5px;
-}
-
-.property-features span,
-.property-location span {
-    display: block;
 }
 
 .property-price {
@@ -175,69 +208,8 @@ body {
 
 .card:hover {
     box-shadow: 5px 5px 5px var(--cor-sombra-azul);
-    scale: 1.05;
+    transform: scale(1.05);
 }
-
-.card-img-top {
-    height: 200px;
-    object-fit: cover;
-}
-
-.btn-primary {
-    background-color: var(--cor-primaria);
-    border-color: var(--cor-primaria);
-}
-
-.wrapper {
-    min-height: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
-.content {
-    flex: 1;
-    margin-top: 100px;
-    margin-bottom: 60px;
-}
-
-/* Estilos para o footer */
-footer {
-    bottom: 0;
-    width: 100%;
-    z-index: 1000;
-    background-color: var(--cor-primaria);
-    color: var(--cor-terciaria);
-    text-align: center;
-    padding: 10px 0;
-}
-
-/* Estilização do banner */
-#featuredBanners {
-    max-width: 70%;
-    max-height: 400px;
-}
-
-#featuredBanners .carousel-inner img {
-    width: 100%;
-    height: auto;
-}
-
-
-
-/* Segunda linha: características */
-.property-features {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    flex-wrap: nowrap;
-    font-size: 0.9rem;
-    margin-bottom: 5px;
-    width: 100%;
-}
-
-/* Estilos para o cabeçalho */
-
 
 nav {
     padding-right: 10px;
@@ -276,93 +248,41 @@ nav a:hover {
     margin-left: 20px;
 }
 
-/* Estilo para o container da página Sobre */
-.sobre-container {
-    width: 30%;
-    margin-left: 5%;
-    margin-right: auto;
-    padding: 20px;
-}
-
 /* Mobile */
-@media (max-width: 768px) {
-
-
+@media (max-width: 1090px) {
     body {
-        background-image: url('/resources/fundo.jpeg');
+        background-image: url('/resources/fundoMenor.jpeg');
         background-repeat: no-repeat;
+        background-size: auto;
+    }
+
+    .hero {
+        height: 70px;
     }
 
     .hero h2 {
+        justify-self: center;
+        align-self: center;
         padding-top: 20px;
-        padding-bottom: 30px;
+        color: var(--cor-secundaria);
         font-size: 1.5rem;
+        text-shadow: 1px 1px 2px black;
 
     }
 
     .filters-section {
-        margin-left: 20px;
-        margin-right: 20px;
+        background-color: var(--cor-secundaria);
+        padding-left: 20px;
+        padding-right: 20px;
+        margin: 20px;
+        border-radius: 8px;
     }
-
-
-    .header-container {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        margin: 0;
-        padding: 0;
-    }
-
-    .header-container .grid-item-top:nth-child(1) {
-        justify-self: start;
-        margin-left: 5px;
-
-    }
-
-    .header-container .grid-item-top:nth-child(2) {
-        justify-self: end;
-        margin-right: 5px;
-
-    }
-
-    .header-contacts {
-        display: grid;
-        grid-template-columns: auto auto auto auto;
-        align-items: space-evenly;
-    }
-
-    .header-contacts .grid-item {
-        justify-items: center;
-        text-align: center;
-        align-content: center;
-    }
-
-    .grid-item:nth-child(1),
-    .grid-item:nth-child(3) {
-        align-self: self-end;
-        text-align: right;
-    }
-
-    .grid-item:nth-child(2),
-    .grid-item:nth-child(4) {
-        text-align: left;
-    }
-
-    .header-contacts .grid-item img {
-        margin: 5px;
-        width: 30px;
-        height: 30px;
-    }
-
-
 
     #featuredBanners {
-        max-width: 100%;
-    }
 
-    .property-card {
-        width: 100%;
         max-width: 100%;
+        max-height: 150px;
+
     }
 
     .sobre-container {
@@ -371,18 +291,51 @@ nav a:hover {
         margin-right: auto;
     }
 
-
-
+    .property-card {
+        width: 100%;
+        max-width: 100%;
+    }
 
     nav {
         padding-right: 11px;
         gap: 11px;
     }
 
+    .header-container {
+        grid-template-columns: auto auto;
+        grid-template-rows: auto auto;
+        grid-template-areas:
+            "logo menu"
+            "contact1 contact2";
+        gap: revert;
+    }
+
     .logo {
         padding: 5px 5px;
         margin: 0px;
+        grid-area: logo;
     }
 
+    .menu {
+        grid-area: menu;
+    }
 
+    .contact:nth-of-type(1) {
+        grid-area: contact1;
+        justify-content: center;
+    }
+
+    .contact:nth-of-type(2) {
+        grid-area: contact2;
+        justify-content: center;
+    }
+
+    .contact {
+        justify-self: center;
+        align-items: center;
+    }
+
+    .contact p {
+        margin-top: revert;
+    }
 }
