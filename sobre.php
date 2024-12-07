@@ -42,8 +42,8 @@
                     </div>
                     <!-- Segunda coluna: Imagens -->
                     <div class="col-md-6 text-center">
-                        <img src="resources/LOGO500X500.png" alt="Imagem 1" class="img-fluid mb-3">
-                        <img src="resources/LOGO500X500.png" alt="Imagem 2" class="img-fluid">
+                        <img src="resources/LOGO500X500.png" alt="Foto da fachada" class="img-fluid mb-3">
+                        <img src="resources/LOGO500X500.png" alt="Foto do interior" class="img-fluid">
                     </div>
                 </div>
             </div>
