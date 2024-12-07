@@ -11,7 +11,7 @@
                 R. João Carlos Stein, 593 - Jaraguá Esquerdo, Jaraguá do Sul - SC, 89253-350
             </li>
             <li>
-                <a href="https://wa.me/5547991424641?text=Olá, gostaria de mais informações." target="_blank">
+                <a href="https://wa.me/5547991424641?text=Olá, gostaria de mais informações sobre seus imóveis." target="_blank">
                     <img src="resources/whatsapp.png" alt="WhatsApp">
                 </a>
                 (47) 99142-4641

@@ -6,7 +6,7 @@
     </div>
     <!-- Item 2 e 3: Ícone e texto do primeiro telefone -->
     <div class="grid-item contact">
-      <a href="https://wa.me/5547991424641?text=Olá, gostaria de mais informações." target="_blank">
+      <a href="https://wa.me/5547991424641?text=Olá, gostaria de mais informações sobre seus imóveis." target="_blank">
         <img src="resources/whatsapp.png" alt="WhatsApp">
       </a>
       <p>(47) 99142-4641</p>
