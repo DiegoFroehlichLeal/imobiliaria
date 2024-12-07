@@ -70,6 +70,7 @@ body {
 
 .logo {
     grid-area: logo;
+    padding-left: 10px;
 }
 
 .contact:nth-of-type(1) {
@@ -127,13 +128,56 @@ body {
 
 /* Estilos para o footer */
 footer {
-    bottom: 0;
+    background-color: var(--cor-cinza);
+    color: var(--cor-secundaria);
+    padding: 2px;
     width: 100%;
-    z-index: 1000;
-    background-color: var(--cor-primaria);
-    color: var(--cor-terciaria);
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding-left: 5px;
+    padding-right: 5px;
+    /* Permite quebra de linha */
+}
+
+.footer-logo img {
+    height: 150px;
+    padding-left: 10px;
+    /* Altura da logo */
+}
+
+.footer-info {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: right;
+    /* Alinha o texto à direita */
+}
+
+.footer-info li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    justify-content: flex-end;
+    /* Alinha os itens à direita */
+}
+
+.footer-info li img {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+/* Estilização para o parágrafo de direitos autorais */
+.footer-container p {
+    width: 100%;
     text-align: center;
-    padding: 10px 0;
+    margin-bottom: 2px;
+
 }
 
 /* Estilização do banner */
@@ -212,7 +256,7 @@ footer {
 }
 
 nav {
-    padding-right: 10px;
+    padding-right: 20px;
 }
 
 nav a {
@@ -311,7 +355,7 @@ nav a:hover {
     }
 
     .logo {
-        padding: 5px 5px;
+       
         margin: 0px;
         grid-area: logo;
     }
@@ -337,5 +381,31 @@ nav a:hover {
 
     .contact p {
         margin-top: revert;
+    }
+
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+        /* Centraliza os itens */
+    }
+
+    .footer-logo {
+        margin-bottom: 20px;
+        /* Espaçamento abaixo da logo */
+    }
+
+    .footer-info {
+        text-align: left;
+        /* Alinha o texto à esquerda */
+        align-items: center;
+    }
+
+    .footer-info li {
+        justify-content: flex-start;
+        /* Alinha os itens à esquerda */
+    }
+
+    .footer-info li img {
+        margin-right: 10px;
     }
 }
