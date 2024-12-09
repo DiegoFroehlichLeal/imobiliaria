@@ -7,13 +7,13 @@
     <!-- Item 2 e 3: Ícone e texto do primeiro telefone -->
     <div class="grid-item contact">
       <a href="https://wa.me/5547991424641?text=Olá, gostaria de mais informações sobre seus imóveis." target="_blank">
-        <img src="resources/whatsapp.png" alt="WhatsApp">
+        <img src="resources/Whatsapp.png" alt="WhatsApp">
       </a>
       <p>(47) 99142-4641</p>
     </div>
     <!-- Item 4 e 5: Ícone e texto do segundo telefone -->
     <div class="grid-item contact">
-      <img src="resources/telefoneFixo.png" alt="Telefone Fixo">
+      <img src="resources/phoneGreen.png" alt="Telefone Fixo">
       <p>(47) 3084-0707</p>
     </div>
     <!-- Item 6: Menu -->

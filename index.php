@@ -23,7 +23,7 @@
 
   <!-- Hero Section -->
   <div class="hero">
-    <h2>A Chave para bons negócios</h2>
+    <h2>A chave para bons negócios.</h2>
   </div>
 
   <!-- Filtro de busca -->
@@ -66,14 +66,9 @@
   <!-- Seção de banners de destaque -->
   <div id="featuredBanners" class="carousel slide my-5 mx-auto" data-bs-ride="carousel">
     <div class="carousel-inner">
+      
       <div class="carousel-item active">
-        <img src="banners/banner1.jpg" class="d-block w-100" alt="Banner 1">
-      </div>
-      <div class="carousel-item">
-        <img src="banners/banner2.jpg" class="d-block w-100" alt="Banner 2">
-      </div>
-      <div class="carousel-item">
-        <img src="banners/banner3.jpg" class="d-block w-100" alt="Banner 3">
+        <img src="banners/FERIASISIMOVEIS.png" class="d-block w-100" alt="Banner 2">
       </div>
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#featuredBanners" data-bs-slide="prev">

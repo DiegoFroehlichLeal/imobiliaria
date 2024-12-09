@@ -28,7 +28,7 @@
                     <div class="col-md-6">
                         <p>Visando um atendimento de qualidade e acima de tudo transparência, a IS IMÓVEIS chegou à Jaraguá do Sul com o objetivo de transformar sonhos em realizações, buscando sempre a satisfação dos nossos clientes.</p>
                         <p>Está localizada em um dos bairros mais antigos da cidade, o bairro Jaraguá Esquerdo, na Rua João Carlos Stein, 593, bem em frente ao Estádio João Marcatto (Juventus), com fácil estacionamento.</p>
-                        <p>Contamos com a parceria de construtoras e demais parceiros, que juntos garantem a segurança de um bom negócio.</p>
+                        <p>Contamos com a parceria da Caixa Econômica Federal para venda de imóveis recuperados de Financiamento./p>
                         <p>Oferecemos os seguintes serviços:</p>
                         <ul>
                             <li>Compra;</li>

@@ -2,10 +2,15 @@
     --cor-primaria: #00AEEF;
     --cor-secundaria: #D8D8D8;
     --cor-terciaria: #222831;
-    --cor-sombra-azul: #00afef85;
+    --cor-sombra-azul: #6067699c;
     --cor-cinza: #495057;
 }
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 html,
 body {
     height: 100%;
@@ -40,7 +45,7 @@ body {
 
 
 .contact p {
-    margin-top: revert;
+    margin: 0
 }
 
 .contact img {
@@ -75,7 +80,7 @@ body {
 
 .logo {
     grid-area: logo;
-    padding-left: 10px;
+    padding-left: 12px;
 }
 
 .contact:nth-of-type(1) {
@@ -105,8 +110,13 @@ body {
 }
 
 .btn-primary {
-    background-color: var(--cor-primaria);
-    border-color: var(--cor-primaria);
+    background-color: var(--cor-cinza);
+    border-color: var(--cor-cinza);
+}
+
+.btn-primary:hover {
+    background-color: var(--cor-sombra-azul);
+    border-color: var(--cor-sombra-azul);
 }
 
 .text-center {
@@ -177,11 +187,13 @@ footer {
 #featuredBanners {
     max-width: 70%;
     max-height: 400px;
+    margin: 0;
 }
 
 #featuredBanners .carousel-inner img {
-    width: 100%;
-    height: auto;
+    width: 900px;
+    height: 300px;
+    object-fit: contain;
 }
 
 .property-card {
@@ -294,10 +306,49 @@ nav a:hover {
     }
 
     #featuredBanners {
-
         max-width: 100%;
-        max-height: 150px;
+        max-height: 100%;
+        margin: 0;
+        position: relative;
+        /* Necessário para posicionar os controles */
+        overflow: hidden;
+        /* Evita que elementos ultrapassem o contêiner */
+    }
 
+    /* Ajuste das imagens do carrossel */
+    #featuredBanners .carousel-inner {
+        width: 100%;
+        height: 100%;
+    }
+
+    #featuredBanners .carousel-inner img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        /* Mantém a proporção da imagem sem cortar */
+    }
+
+    /* Ajuste dos controles do carrossel */
+    #featuredBanners .carousel-control-prev,
+    #featuredBanners .carousel-control-next {
+        height: 100%;
+        top: 0;
+        bottom: 0;
+        width: auto;
+        background: none;
+    }
+
+    #featuredBanners .carousel-control-prev-icon,
+    #featuredBanners .carousel-control-next-icon {
+        width: 30px;
+        height: 30px;
+    }
+
+    /* Opcional: Centralizar verticalmente os ícones dos controles */
+    #featuredBanners .carousel-control-prev,
+    #featuredBanners .carousel-control-next {
+        display: flex;
+        align-items: center;
     }
 
     .property-card {
