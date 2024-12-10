@@ -48,7 +48,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $imagens = $imovel['imagens'];
     }
 
-    // Atualiza o imóvel no banco de dados
     $sql = "UPDATE imoveis SET titulo = ?, descricao = ?, tipo = ?, quartos = ?, banheiros = ?, tamanho = ?, vagas = ?, cidade = ?, bairro = ?, endereco = ?, preco = ?, imagem_principal = ?, imagens = ? WHERE id = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param(
@@ -89,21 +88,83 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="container py-4">
         <h1 class="text-center mb-4">Editar Imóvel</h1>
         <form method="POST" enctype="multipart/form-data" class="row g-3">
-            <!-- Campos do formulário preenchidos com os dados do imóvel -->
-            <!-- Exemplo do campo Título -->
+            <!-- Campo Título -->
             <div class="col-md-6">
+                <label for="titulo" class="form-label">Título</label>
                 <input type="text" name="titulo" class="form-control" value="<?= $imovel['titulo'] ?>" required>
             </div>
             <!-- Campo Tipo -->
             <div class="col-md-6">
+                <label for="tipo" class="form-label">Tipo</label>
                 <select name="tipo" class="form-control" required>
                     <option value="" disabled>Selecione o tipo do imóvel</option>
                     <option value="apartamento" <?= $imovel['tipo'] == 'apartamento' ? 'selected' : '' ?>>Apartamento</option>
-                    <!-- Repita para os demais tipos -->
+                    <option value="casa" <?= $imovel['tipo'] == 'casa' ? 'selected' : '' ?>>Casa</option>
+                    <option value="casa comercial" <?= $imovel['tipo'] == 'casa comercial' ? 'selected' : '' ?>>Casa Comercial</option>
+                    <option value="sala comercial" <?= $imovel['tipo'] == 'sala comercial' ? 'selected' : '' ?>>Sala Comercial</option>
+                    <option value="geminado" <?= $imovel['tipo'] == 'geminado' ? 'selected' : '' ?>>Geminado</option>
+                    <option value="galpão" <?= $imovel['tipo'] == 'galpão' ? 'selected' : '' ?>>Galpão</option>
+                    <option value="terreno" <?= $imovel['tipo'] == 'terreno' ? 'selected' : '' ?>>Terreno</option>
+                    <option value="chácara" <?= $imovel['tipo'] == 'chácara' ? 'selected' : '' ?>>Chácara</option>
+                    <option value="outros" <?= $imovel['tipo'] == 'outros' ? 'selected' : '' ?>>Outros</option>
                 </select>
             </div>
-            <!-- Adicione o restante dos campos seguindo o padrão -->
-            <!-- Botão de envio -->
+            <!-- Campo Descrição -->
+            <div class="col-12">
+                <label for="descricao" class="form-label">Descrição</label>
+                <textarea name="descricao" class="form-control" rows="4" required><?= $imovel['descricao'] ?></textarea>
+            </div>
+            <!-- Campo Quartos -->
+            <div class="col-md-4">
+                <label for="quartos" class="form-label">Quartos</label>
+                <input type="number" name="quartos" class="form-control" value="<?= $imovel['quartos'] ?>" required>
+            </div>
+            <!-- Campo Banheiros -->
+            <div class="col-md-4">
+                <label for="banheiros" class="form-label">Banheiros</label>
+                <input type="number" name="banheiros" class="form-control" value="<?= $imovel['banheiros'] ?>" required>
+            </div>
+            <!-- Campo Tamanho -->
+            <div class="col-md-4">
+                <label for="tamanho" class="form-label">Tamanho (m²)</label>
+                <input type="number" name="tamanho" class="form-control" value="<?= $imovel['tamanho'] ?>" required>
+            </div>
+            <!-- Campo Vagas -->
+            <div class="col-md-4">
+                <label for="vagas" class="form-label">Vagas de Garagem</label>
+                <input type="number" name="vagas" class="form-control" value="<?= $imovel['vagas'] ?>" required>
+            </div>
+            <!-- Campo Cidade -->
+            <div class="col-md-4">
+                <label for="cidade" class="form-label">Cidade</label>
+                <input type="text" name="cidade" class="form-control" value="<?= $imovel['cidade'] ?>" required>
+            </div>
+            <!-- Campo Bairro -->
+            <div class="col-md-4">
+                <label for="bairro" class="form-label">Bairro</label>
+                <input type="text" name="bairro" class="form-control" value="<?= $imovel['bairro'] ?>" required>
+            </div>
+            <!-- Campo Endereço -->
+            <div class="col-12">
+                <label for="endereco" class="form-label">Endereço</label>
+                <input type="text" name="endereco" class="form-control" value="<?= $imovel['endereco'] ?>" required>
+            </div>
+            <!-- Campo Preço -->
+            <div class="col-12">
+                <label for="preco" class="form-label">Preço</label>
+                <input type="number" name="preco" class="form-control" value="<?= $imovel['preco'] ?>" required>
+            </div>
+            <!-- Campo Imagem Principal -->
+            <div class="col-12">
+                <label for="imagem_principal" class="form-label">Imagem Principal</label>
+                <input type="file" name="imagem_principal" class="form-control">
+            </div>
+            <!-- Campo Outras Imagens -->
+            <div class="col-12">
+                <label for="imagens" class="form-label">Outras Imagens</label>
+                <input type="file" name="imagens[]" class="form-control" multiple>
+            </div>
+            <!-- Botão de Envio -->
             <div class="col-12 text-center">
                 <button type="submit" class="btn btn-primary">Salvar Alterações</button>
             </div>

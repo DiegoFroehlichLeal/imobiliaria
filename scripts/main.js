@@ -10,6 +10,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         propertiesContainer.innerHTML = '';
         propertiesContainer.classList.add('d-flex', 'flex-wrap', 'justify-content-center');
 
+        if (properties.length === 0) {
+            propertiesContainer.innerHTML = '<p class="text-center">Não possuímos imóveis nessa cidade.</p>';
+            return;
+        }
+
         properties.forEach(property => {
             propertiesContainer.innerHTML += `
                 <div class="card property-card" data-id="${property.id}">

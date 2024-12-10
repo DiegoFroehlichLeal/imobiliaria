@@ -160,6 +160,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <table class="table table-bordered">
             <thead>
                 <tr>
+                    <th>Código</th>
                     <th>Título</th>
                     <th>Tipo</th>
                     <th>Cidade</th>
@@ -173,6 +174,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 while ($row = $result->fetch_assoc()):
                     ?>
                     <tr>
+                        <td><?= $row['id'] ?></td>
                         <td><?= $row['titulo'] ?></td>
                         <td><?= $row['tipo'] ?></td>
                         <td><?= $row['cidade'] ?></td>

@@ -368,6 +368,8 @@ nav a:hover {
             "logo menu"
             "contact1 contact2";
         gap: revert;
+        padding-bottom: 2px;
+        
     }
 
     .logo {
@@ -394,9 +396,7 @@ nav a:hover {
         align-items: center;
     }
 
-    .contact p {
-        margin-top: revert;
-    }
+
 
     .footer-container {
         flex-direction: column;
