@@ -2,6 +2,8 @@
 require_once 'includes/db.php';
 require_once 'includes/functions.php';
 
+$tipos_imoveis_fixos = ['Casa', 'Apartamento', 'Geminado', 'Terreno', 'Galpão', 'Chácara', 'Sítio'];
+
 // Verifica se o ID foi passado
 $id = $_GET['id'] ?? null;
 
@@ -98,15 +100,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <label for="tipo" class="form-label">Tipo</label>
                 <select name="tipo" class="form-control" required>
                     <option value="" disabled>Selecione o tipo do imóvel</option>
-                    <option value="apartamento" <?= $imovel['tipo'] == 'apartamento' ? 'selected' : '' ?>>Apartamento</option>
-                    <option value="casa" <?= $imovel['tipo'] == 'casa' ? 'selected' : '' ?>>Casa</option>
-                    <option value="casa comercial" <?= $imovel['tipo'] == 'casa comercial' ? 'selected' : '' ?>>Casa Comercial</option>
-                    <option value="sala comercial" <?= $imovel['tipo'] == 'sala comercial' ? 'selected' : '' ?>>Sala Comercial</option>
-                    <option value="geminado" <?= $imovel['tipo'] == 'geminado' ? 'selected' : '' ?>>Geminado</option>
-                    <option value="galpão" <?= $imovel['tipo'] == 'galpão' ? 'selected' : '' ?>>Galpão</option>
-                    <option value="terreno" <?= $imovel['tipo'] == 'terreno' ? 'selected' : '' ?>>Terreno</option>
-                    <option value="chácara" <?= $imovel['tipo'] == 'chácara' ? 'selected' : '' ?>>Chácara</option>
-                    <option value="outros" <?= $imovel['tipo'] == 'outros' ? 'selected' : '' ?>>Outros</option>
+                    <?php foreach ($tipos_imoveis_fixos as $tipo): ?>
+                        <option value="<?= $tipo ?>" <?= $imovel['tipo'] == $tipo ? 'selected' : '' ?>>
+                            <?= $tipo ?>
+                        </option>
+                    <?php endforeach; ?>
                 </select>
             </div>
             <!-- Campo Descrição -->

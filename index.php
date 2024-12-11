@@ -2,10 +2,10 @@
 require_once 'includes/db.php';
 require_once 'get_bairros.php';
 require_once 'get_cidades.php';
-require_once 'get_tipos.php';
+// require_once 'get_tipos.php';
 
 // Cidades prioritárias
-$cidades_importantes = ['Jaraguá do Sul', 'Guaramirim', 'Massaranduba', 'Schroeder', 'Barra Velha'];
+$cidades_importantes = ['Jaraguá do Sul', 'Guaramirim','Corupá' ,'Massaranduba', 'Schroeder', 'Barra Velha'];
 
 // Obter os bairros organizados
 $bairros_por_cidade = getBairrosPorCidade($cidades_importantes);
@@ -14,7 +14,9 @@ $bairros_por_cidade = getBairrosPorCidade($cidades_importantes);
 $cidades_ordenadas = getCidadesOrdenadas($cidades_importantes);
 
 // Obter os tipos de imóveis
-$tipos_imoveis = getTiposImoveis();
+//$tipos_imoveis = getTiposImoveis();
+
+$tipos_imoveis_fixos = ['Casa', 'Apartamento', 'Geminado', 'Terreno', 'Galpão', 'Chácara', 'Sítio'];
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -57,8 +59,8 @@ $tipos_imoveis = getTiposImoveis();
         <!-- Tipo de Imóvel -->
         <div class="col-md-3">
           <select class="form-select" name="tipo">
-            <option selected disabled>Tipo de imóvel</option>
-            <?php foreach ($tipos_imoveis as $tipo): ?>
+            <option Value="">Tipo de imóvel</option>
+            <?php foreach ($tipos_imoveis_fixos as $tipo): ?>
               <option value="<?= htmlspecialchars($tipo) ?>"><?= htmlspecialchars($tipo) ?></option>
             <?php endforeach; ?>
           </select>

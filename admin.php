@@ -2,6 +2,8 @@
 require_once 'includes/db.php';
 require_once 'includes/functions.php';
 
+$tipos_imoveis_fixos = ['Casa', 'Apartamento', 'Geminado', 'Terreno', 'Galpão', 'Chácara', 'Sítio'];
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Processamento do formulário
     $titulo = $_POST['titulo'] ?? '';
@@ -96,15 +98,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="col-md-6">
                 <select name="tipo" class="form-control" required>
                     <option value="" disabled selected>Selecione o tipo do imóvel</option>
-                    <option value="apartamento">Apartamento</option>
-                    <option value="casa">Casa</option>
-                    <option value="casa comercial">Casa Comercial</option>
-                    <option value="sala comercial">Sala Comercial</option>
-                    <option value="geminado">Geminado</option>
-                    <option value="galpão">Galpão</option>
-                    <option value="terreno">Terreno</option>
-                    <option value="chácara">Chácara</option>
-                    <option value="outros">Outros</option>
+                    <?php foreach ($tipos_imoveis_fixos as $tipo): ?>
+                        <option value="<?= $tipo ?>"><?= $tipo ?></option>
+                    <?php endforeach; ?>
                 </select>
             </div>
             <div class="col-md-6">

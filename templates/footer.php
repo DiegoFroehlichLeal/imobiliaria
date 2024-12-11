@@ -30,6 +30,6 @@
             </li>
         </ul>
         <!-- Texto de direitos autorais -->
-        <p>&copy; <?= date('Y'); ?> Imobiliária IS imóveis. Todos os direitos reservados. CRECI 5201-J</p>
+        <p>&copy; <?= date('Y'); ?> Imobiliária IS IMÓVEIS. Todos os direitos reservados. CRECI 5201-J</p>
     </div>
 </footer>
