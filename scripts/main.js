@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     const propertiesContainer = document.getElementById('properties-container');
     const filterForm = document.getElementById('filter-form');
 
-    // Função para formatar o preço
     function formatarPreco(preco) {
         if (!isNaN(preco) && preco !== null && preco !== '') {
             return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(parseFloat(preco));
@@ -20,7 +19,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         propertiesContainer.classList.add('d-flex', 'flex-wrap', 'justify-content-center');
 
         if (properties.length === 0) {
-            propertiesContainer.innerHTML = '<p class="text-center">Não possuímos imóveis nessa cidade.</p>';
+            propertiesContainer.innerHTML = '<p class="text-center">Não possuímos imóveis com estas características.</p>';
             return;
         }
 
@@ -75,6 +74,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         const response = await fetch(`property_details.php?id=${id}`);
         const property = await response.json();
 
+        // Garante que property.imagens seja um array
+        const imagens = Array.isArray(property.imagens) ? property.imagens : [];
+
         // Cria o conteúdo do modal
         const modalContent = `
             <div class="modal fade" id="propertyModal" tabindex="-1" aria-labelledby="propertyModalLabel" aria-hidden="true">
@@ -91,7 +93,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                                     <div class="carousel-item active">
                                         <img src="${property.imagem_principal}" class="d-block w-100" alt="${property.titulo}">
                                     </div>
-                                    ${property.imagens.map(img => `
+                                    ${imagens.map(img => `
                                         <div class="carousel-item">
                                             <img src="${img}" class="d-block w-100" alt="${property.titulo}">
                                         </div>

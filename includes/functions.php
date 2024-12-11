@@ -18,6 +18,6 @@ function uploadMultiplasImagens($files, $pasta)
             $uploadedFiles[] = $targetFile;
         }
     }
-    return json_encode($uploadedFiles); // Salva como JSON no banco
+    return $uploadedFiles; // Retorna um array de URLs
 }
 ?>

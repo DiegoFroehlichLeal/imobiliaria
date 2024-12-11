@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $imagens = $_FILES['imagens'] ?? null;
         if ($imagens && is_array($imagens['name'])) {
             $imagens = uploadMultiplasImagens($_FILES['imagens'], $pasta_imovel);
-            $imagens_json = json_encode($imagens);
+            $imagens_json = json_encode($imagens, JSON_UNESCAPED_SLASHES);
         } else {
             $imagens_json = null;
         }

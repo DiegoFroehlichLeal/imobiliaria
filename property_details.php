@@ -12,7 +12,7 @@ if ($id) {
 
     if ($property) {
         // Decodifica as imagens adicionais
-        $property['imagens'] = json_decode($property['imagens']) ?? [];
+        $property['imagens'] = json_decode($property['imagens'], true) ?? [];
 
         echo json_encode($property);
     } else {
