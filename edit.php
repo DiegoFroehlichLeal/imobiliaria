@@ -27,14 +27,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $titulo = $_POST['titulo'] ?? '';
     $descricao = $_POST['descricao'] ?? '';
     $tipo = $_POST['tipo'] ?? '';
-    $quartos = $_POST['quartos'] ?? 0;
-    $banheiros = $_POST['banheiros'] ?? 0;
-    $tamanho = $_POST['tamanho'] ?? 0;
-    $vagas = $_POST['vagas'] ?? 0;
+    $quartos = isset($_POST['quartos']) && $_POST['quartos'] !== '' ? $_POST['quartos'] : 0;
+    $banheiros = isset($_POST['banheiros']) && $_POST['banheiros'] !== '' ? $_POST['banheiros'] : 0;
+    $tamanho = isset($_POST['tamanho']) && $_POST['tamanho'] !== '' ? floatval($_POST['tamanho']) : null;
+    $vagas = isset($_POST['vagas']) && $_POST['vagas'] !== '' ? $_POST['vagas'] : 0;
     $cidade = $_POST['cidade'] ?? '';
     $bairro = $_POST['bairro'] ?? '';
     $endereco = $_POST['endereco'] ?? '';
-    $preco = $_POST['preco'] ?? 0;
+    $preco = isset($_POST['preco']) && $_POST['preco'] !== '' ? floatval($_POST['preco']) : 'Entre em contato';
 
     // Atualiza a imagem principal se houver novo upload
     if ($_FILES['imagem_principal']['name']) {
@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $sql = "UPDATE imoveis SET titulo = ?, descricao = ?, tipo = ?, quartos = ?, banheiros = ?, tamanho = ?, vagas = ?, cidade = ?, bairro = ?, endereco = ?, preco = ?, imagem_principal = ?, imagens = ? WHERE id = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param(
-        'sssiiissssissi',
+        'sssiiidssssssi',
         $titulo,
         $descricao,
         $tipo,
@@ -110,47 +110,47 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <!-- Campo Descrição -->
             <div class="col-12">
                 <label for="descricao" class="form-label">Descrição</label>
-                <textarea name="descricao" class="form-control" rows="4" required><?= $imovel['descricao'] ?></textarea>
+                <textarea name="descricao" class="form-control" rows="4"><?= $imovel['descricao'] ?></textarea>
             </div>
             <!-- Campo Quartos -->
             <div class="col-md-4">
                 <label for="quartos" class="form-label">Quartos</label>
-                <input type="number" name="quartos" class="form-control" value="<?= $imovel['quartos'] ?>" required>
+                <input type="number" name="quartos" class="form-control" value="<?= $imovel['quartos'] ?>">
             </div>
             <!-- Campo Banheiros -->
             <div class="col-md-4">
                 <label for="banheiros" class="form-label">Banheiros</label>
-                <input type="number" name="banheiros" class="form-control" value="<?= $imovel['banheiros'] ?>" required>
+                <input type="number" name="banheiros" class="form-control" value="<?= $imovel['banheiros'] ?>">
             </div>
             <!-- Campo Tamanho -->
             <div class="col-md-4">
                 <label for="tamanho" class="form-label">Tamanho (m²)</label>
-                <input type="number" name="tamanho" class="form-control" value="<?= $imovel['tamanho'] ?>" required>
+                <input type="number" name="tamanho" class="form-control" step="0.01" min="0" value="<?= $imovel['tamanho'] ?>">
             </div>
             <!-- Campo Vagas -->
             <div class="col-md-4">
                 <label for="vagas" class="form-label">Vagas de Garagem</label>
-                <input type="number" name="vagas" class="form-control" value="<?= $imovel['vagas'] ?>" required>
+                <input type="number" name="vagas" class="form-control" value="<?= $imovel['vagas'] ?>">
             </div>
             <!-- Campo Cidade -->
             <div class="col-md-4">
                 <label for="cidade" class="form-label">Cidade</label>
-                <input type="text" name="cidade" class="form-control" value="<?= $imovel['cidade'] ?>" required>
+                <input type="text" name="cidade" class="form-control" value="<?= $imovel['cidade'] ?>">
             </div>
             <!-- Campo Bairro -->
             <div class="col-md-4">
                 <label for="bairro" class="form-label">Bairro</label>
-                <input type="text" name="bairro" class="form-control" value="<?= $imovel['bairro'] ?>" required>
+                <input type="text" name="bairro" class="form-control" value="<?= $imovel['bairro'] ?>">
             </div>
             <!-- Campo Endereço -->
             <div class="col-12">
                 <label for="endereco" class="form-label">Endereço</label>
-                <input type="text" name="endereco" class="form-control" value="<?= $imovel['endereco'] ?>" required>
+                <input type="text" name="endereco" class="form-control" value="<?= $imovel['endereco'] ?>">
             </div>
             <!-- Campo Preço -->
             <div class="col-12">
                 <label for="preco" class="form-label">Preço</label>
-                <input type="number" name="preco" class="form-control" value="<?= $imovel['preco'] ?>" required>
+                <input type="number" name="preco" class="form-control" step="0.01" min="0" value="<?= $imovel['preco'] ?>">
             </div>
             <!-- Campo Imagem Principal -->
             <div class="col-12">

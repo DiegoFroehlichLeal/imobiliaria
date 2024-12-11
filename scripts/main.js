@@ -2,6 +2,15 @@ document.addEventListener('DOMContentLoaded', async () => {
     const propertiesContainer = document.getElementById('properties-container');
     const filterForm = document.getElementById('filter-form');
 
+    // Função para formatar o preço
+    function formatarPreco(preco) {
+        if (!isNaN(preco) && preco !== null && preco !== '') {
+            return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(parseFloat(preco));
+        } else {
+            return preco;
+        }
+    }
+
     async function loadProperties(filters = {}) {
         const query = new URLSearchParams(filters).toString();
         const response = await fetch(`api.php?${query}`);
@@ -46,7 +55,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                         </div>
                         <!-- Última linha: Preço -->
                         <div class="property-price">
-                            <button class="btn btn-primary">R$ ${property.preco}</button>
+                            <button class="btn btn-primary">${formatarPreco(property.preco)}</button>
                         </div>
                     </div>
                 </div>
@@ -105,7 +114,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                                 <li>Tamanho: ${property.tamanho} m²</li>
                                 <li>Vagas de Garagem: ${property.vagas}</li>
                                 <li>Endereço: ${property.endereco}, ${property.bairro}, ${property.cidade}</li>
-                                <li>Preço: R$ ${property.preco}</li>
+                                <li>Preço: ${formatarPreco(property.preco)}</li>
                             </ul>
                         </div>
                     </div>

@@ -5,78 +5,71 @@ require_once 'includes/functions.php';
 $tipos_imoveis_fixos = ['Casa', 'Apartamento', 'Geminado', 'Terreno', 'Galpão', 'Chácara', 'Sítio'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Processamento do formulário
+    // Captura dos dados do formulário
     $titulo = $_POST['titulo'] ?? '';
-    $descricao = $_POST['descricao'] ?? '';
-    $quartos = $_POST['quartos'] ?? 0;
-    $banheiros = $_POST['banheiros'] ?? 0;
-    $tamanho = $_POST['tamanho'] ?? 0;
-    $vagas = $_POST['vagas'] ?? 0;
-    $cidade = $_POST['cidade'] ?? '';
-    $bairro = $_POST['bairro'] ?? '';
-    $endereco = $_POST['endereco'] ?? '';
-    $preco = $_POST['preco'] ?? 0;
     $tipo = $_POST['tipo'] ?? '';
 
-    $imagem_principal = $_FILES['imagem_principal']['name'] ?? null;
-    $imagens = $_FILES['imagens'] ?? null;
-    $banners = $_FILES['banners'] ?? null;
+    // Verificação dos campos obrigatórios
+    if ($titulo && $tipo && isset($_FILES['imagem_principal']) && $_FILES['imagem_principal']['error'] === UPLOAD_ERR_OK) {
+        // Campos opcionais com valores padrão ou NULL
+        $quartos = isset($_POST['quartos']) && $_POST['quartos'] !== '' ? $_POST['quartos'] : 0;
+        $banheiros = isset($_POST['banheiros']) && $_POST['banheiros'] !== '' ? $_POST['banheiros'] : 0;
+        $vagas = isset($_POST['vagas']) && $_POST['vagas'] !== '' ? $_POST['vagas'] : 0;
+        $preco = isset($_POST['preco']) && $_POST['preco'] !== '' ? $_POST['preco'] : 'Entre em contato';
+        $endereco = $_POST['endereco'] ?? '';
+        $descricao = $_POST['descricao'] ?? '';
+        $cidade = $_POST['cidade'] ?? '';
+        $bairro = $_POST['bairro'] ?? '';
+        $tamanho = isset($_POST['tamanho']) && $_POST['tamanho'] !== '' ? $_POST['tamanho'] : null;
 
-    // Cria a pasta para o imóvel
-    $data_criacao = date('Ymd');
-    $id = uniqid();
-    $pasta_imovel = "uploads/{$id}_{$data_criacao}";
-    if (!file_exists($pasta_imovel)) {
-        mkdir($pasta_imovel, 0777, true);
-    }
+        // Cria a pasta para o imóvel
+        $data_criacao = date('Ymd');
+        $id = uniqid();
+        $pasta_imovel = "uploads/{$id}_{$data_criacao}";
+        if (!file_exists($pasta_imovel)) {
+            mkdir($pasta_imovel, 0777, true);
+        }
 
-    if ($imagem_principal) {
+        // Processamento da imagem principal
         $imagem_principal = uploadImagem($_FILES['imagem_principal'], $pasta_imovel);
-    }
 
-    if ($imagens && is_array($imagens['name'])) {
-        $imagens = uploadMultiplasImagens($_FILES['imagens'], $pasta_imovel);
-    } else {
-        $imagens = null;
-    }
+        // Processamento das imagens adicionais, se houver
+        $imagens = $_FILES['imagens'] ?? null;
+        if ($imagens && is_array($imagens['name'])) {
+            $imagens = uploadMultiplasImagens($_FILES['imagens'], $pasta_imovel);
+            $imagens_json = json_encode($imagens);
+        } else {
+            $imagens_json = null;
+        }
 
-    if ($banners && is_array($banners['name'])) {
-        $banners = uploadMultiplasImagens($_FILES['banners'], $pasta_imovel);
-    } else {
-        $banners = null;
-    }
-
-    if ($titulo && $descricao && $tipo && $quartos && $banheiros && $tamanho && $vagas && $cidade && $bairro && $endereco && $preco && $imagem_principal) {
+        // Inserção no banco de dados
         $sql = "INSERT INTO imoveis (titulo, descricao, tipo, quartos, banheiros, tamanho, vagas, cidade, bairro, endereco, preco, imagem_principal, imagens) 
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param(
-            'sssiiissssiss',
-            $titulo,
-            $descricao,
-            $tipo,
-            $quartos,
-            $banheiros,
-            $tamanho,
-            $vagas,
-            $cidade,
-            $bairro,
-            $endereco,
-            $preco,
-            $imagem_principal,
-            $imagens
+            'sssiiidssssss',
+            $titulo,            // s
+            $descricao,         // s
+            $tipo,              // s
+            $quartos,           // i
+            $banheiros,         // i
+            $tamanho,           // d
+            $vagas,             // i
+            $cidade,            // s
+            $bairro,            // s
+            $endereco,          // s
+            $preco,             // s
+            $imagem_principal,  // s
+            $imagens_json       // s
         );
 
         if ($stmt->execute()) {
-            $id = $stmt->insert_id;
-            echo "O imóvel foi cadastrado com sucesso, seu código é {$id} e seu título é {$titulo}.";
+            echo "Imóvel cadastrado com sucesso!";
         } else {
             echo "Erro ao cadastrar imóvel: " . $conn->error;
         }
-    } elseif ($banners) {
-        echo "Os banners foram cadastrados com sucesso.";
     } else {
-        echo "Erro: Preencha todos os campos obrigatórios para cadastrar um imóvel ou forneça banners.";
+        echo "Erro: Preencha os campos obrigatórios (Título, Tipo e Imagem Principal) para cadastrar um imóvel.";
     }
 }
 ?>
@@ -95,6 +88,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="container py-4">
         <h1 class="text-center mb-4">Cadastro de Imóveis</h1>
         <form method="POST" enctype="multipart/form-data" class="row g-3">
+            <!-- Campos obrigatórios -->
+            <div class="col-md-6">
+                <input type="text" name="titulo" class="form-control" placeholder="Título do imóvel" required>
+            </div>
             <div class="col-md-6">
                 <select name="tipo" class="form-control" required>
                     <option value="" disabled selected>Selecione o tipo do imóvel</option>
@@ -103,48 +100,42 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <?php endforeach; ?>
                 </select>
             </div>
-            <div class="col-md-6">
-                <input type="text" name="titulo" class="form-control" placeholder="Título do imóvel" required>
-            </div>
-            <div class="col-md-6">
-                <input type="number" name="preco" class="form-control" placeholder="Preço" required>
-            </div>
-            <div class="col-md-4">
-                <input type="number" name="quartos" class="form-control" placeholder="Número de quartos" required>
-            </div>
-            <div class="col-md-4">
-                <input type="number" name="banheiros" class="form-control" placeholder="Número de banheiros" required>
-            </div>
-            <div class="col-md-4">
-                <input type="number" name="tamanho" class="form-control" placeholder="Tamanho (m²)" required>
-            </div>
-            <div class="col-md-4">
-                <input type="number" name="vagas" class="form-control" placeholder="Vagas de garagem" required>
-            </div>
-            <div class="col-md-6">
-                <input type="text" name="cidade" class="form-control" placeholder="Cidade" required>
-            </div>
-            <div class="col-md-6">
-                <input type="text" name="bairro" class="form-control" placeholder="Bairro" required>
-            </div>
-            <div class="col-12">
-                <input type="text" name="endereco" class="form-control" placeholder="Endereço" required>
-            </div>
-            <div class="col-12">
-                <textarea name="descricao" class="form-control" placeholder="Descrição do imóvel" rows="4"
-                    required></textarea>
-            </div>
             <div class="col-12">
                 <label class="form-label">Imagem Principal</label>
                 <input type="file" name="imagem_principal" class="form-control" required>
             </div>
+
+            <!-- Campos opcionais -->
+            <div class="col-md-4">
+                <input type="number" name="quartos" class="form-control" placeholder="Número de quartos">
+            </div>
+            <div class="col-md-4">
+                <input type="number" name="banheiros" class="form-control" placeholder="Número de banheiros">
+            </div>
+            <div class="col-md-4">
+                <input type="number" name="vagas" class="form-control" placeholder="Vagas de garagem">
+            </div>
+            <div class="col-md-4">
+                <input type="number" step="0.01" name="tamanho" class="form-control" placeholder="Tamanho (m²)">
+            </div>
+            <div class="col-md-4">
+                <input type="text" name="cidade" class="form-control" placeholder="Cidade">
+            </div>
+            <div class="col-md-4">
+                <input type="text" name="bairro" class="form-control" placeholder="Bairro">
+            </div>
+            <div class="col-12">
+                <input type="text" name="endereco" class="form-control" placeholder="Endereço">
+            </div>
+            <div class="col-12">
+                <input type="text" name="preco" class="form-control" placeholder="Preço">
+            </div>
+            <div class="col-12">
+                <textarea name="descricao" class="form-control" placeholder="Descrição do imóvel" rows="4"></textarea>
+            </div>
             <div class="col-12">
                 <label class="form-label">Outras Imagens</label>
                 <input type="file" name="imagens[]" class="form-control" multiple>
-            </div>
-            <div class="col-12">
-                <label class="form-label">Banners</label>
-                <input type="file" name="banners[]" class="form-control" multiple>
             </div>
 
             <div class="col-12 text-center">
