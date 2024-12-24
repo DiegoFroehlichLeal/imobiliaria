@@ -29,7 +29,10 @@
                 08:30 às 12:00 - 13:30 às 18:00 de segunda à sexta
             </li>
         </ul>
-        <!-- Texto de direitos autorais -->
-        <p>&copy; <?= date('Y'); ?> Imobiliária IS IMÓVEIS. Todos os direitos reservados. CRECI 5201-J</p>
+        <!-- Texto de direitos autorais e desenvolvido por -->
+        <div class="footer-bottom">
+            <p class="copy">&copy; <?= date('Y'); ?> Imobiliária IS IMÓVEIS. Todos os direitos reservados. CRECI 5201-J</p>
+            <p class="developed-by">Desenvolvido por: <a href="//www.dflsistemas.com.br" target="_blank" rel="noopener noreferrer"><img src="resources/logoDFL.png" alt="DFL Sistemas" class="dfl-logo"></a></p>
+        </div>
     </div>
 </footer>

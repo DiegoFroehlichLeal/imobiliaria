@@ -11,6 +11,7 @@
     padding: 0;
     box-sizing: border-box;
 }
+
 html,
 body {
     height: 100%;
@@ -182,6 +183,33 @@ footer {
     text-align: center;
     margin-bottom: 2px;
 
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    position: relative;
+}
+
+.footer-bottom .copy {
+    text-align: center;
+    flex: 1;
+}
+
+.footer-bottom .developed-by {
+    font-size: 0.7em;
+    /* Fonte ligeiramente menor */
+    position: absolute;
+    right: 0;
+    text-align: end;
+}
+
+.footer-bottom .developed-by .dfl-logo {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
 }
 
 #featuredBanners {
@@ -369,7 +397,7 @@ nav a:hover {
             "contact1 contact2";
         gap: revert;
         padding-bottom: 2px;
-        
+
     }
 
     .logo {
@@ -418,5 +446,21 @@ nav a:hover {
 
     .footer-info li img {
         margin-right: 10px;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+    }
+
+    .footer-bottom .copy,
+    .footer-bottom .developed-by {
+        position: static;
+        text-align: center;
+        margin: 5px 0;
+    }
+
+    .footer-bottom .developed-by .dfl-logo {
+        display: inline-block;
+        margin-left: 5px;
     }
 }
