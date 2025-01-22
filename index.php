@@ -101,7 +101,7 @@ $tipos_imoveis_fixos = ['Casa', 'Apartamento', 'Geminado', 'Terreno', 'Galpão',
   </div>
 
   <!-- Seção de banners de destaque -->
-  <div id="featuredBanners" class="carousel slide my-5 mx-auto" data-bs-ride="carousel">
+  <!-- <div id="featuredBanners" class="carousel slide my-5 mx-auto" data-bs-ride="carousel">
     <div class="carousel-inner">
       <div class="carousel-item active">
         <img src="banners/FERIASISIMOVEIS.png" class="d-block w-100" alt="Banner 2">
@@ -115,7 +115,7 @@ $tipos_imoveis_fixos = ['Casa', 'Apartamento', 'Geminado', 'Terreno', 'Galpão',
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Próximo</span>
     </button>
-  </div>
+  </div> -->
 
   <!-- Lista de imóveis -->
   <div class="container my-5">
