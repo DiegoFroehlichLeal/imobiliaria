@@ -9,6 +9,18 @@ require_once 'includes/functions.php';
 
 $tipos_imoveis_fixos = ['Casa', 'Apartamento', 'Geminado', 'Terreno', 'Galpão', 'Chácara', 'Sítio'];
 
+// TODO: 1- Colocar loading no upload de arquivos
+// Adicionar um indicador de carregamento durante o upload de arquivos para melhorar a experiência do usuário.
+
+// TODO: 2- Criar banner de vídeo
+// Adicionar um banner de vídeo na página inicial para destacar os imóveis de forma mais interativa.
+
+// TODO: 3- Melhorar mensagem de erro no cadastro de novo imóvel
+// Tornar as mensagens de erro mais detalhadas e amigáveis ao usuário durante o processo de cadastro de um novo imóvel.
+
+// TODO: 4- Aplicar as melhorias também ao editar e excluir um imóvel
+// Garantir que as melhorias feitas no cadastro de imóveis sejam aplicadas também nas funcionalidades de edição e exclusão de imóveis.
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Captura dos dados do formulário
     $titulo = $_POST['titulo'] ?? '';
@@ -68,9 +80,79 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $imagens_json       // s
         );
 
+        $conn->begin_transaction();
+
         if ($stmt->execute()) {
-            echo "Imóvel cadastrado com sucesso!";
+            $lastId = $conn->insert_id;
+
+            // Verifica cada arquivo de imagem para garantir que foi salvo
+            $todasImagensOk = true;
+            if ($imagem_principal && !file_exists($imagem_principal)) {
+                $todasImagensOk = false;
+            }
+            if ($imagens_json) {
+                $listaImagens = json_decode($imagens_json, true);
+                foreach ($listaImagens as $img) {
+                    if (!file_exists($img)) {
+                        $todasImagensOk = false;
+                        break;
+                    }
+                }
+            }
+
+            if (!$todasImagensOk) {
+                // Exclui o registro parcial
+                $conn->query("DELETE FROM imoveis WHERE id = {$lastId}");
+                $conn->rollback();
+                // Modal de erro
+                echo "
+                <div class='modal fade show' style='display:block;' tabindex='-1'>
+                  <div class='modal-dialog'>
+                    <div class='modal-content'>
+                      <div class='modal-header'>
+                        <h5 class='modal-title'>Erro</h5>
+                      </div>
+                      <div class='modal-body'>
+                        <p>Houve um problema ao adicionar este imóvel, por favor adicione novamente, caso voltar a acontecer, contate o administrador</p>
+                      </div>
+                      <div class='modal-footer'>
+                        <form method='get' action='admin.php'>
+                          <button type='submit' class='btn btn-secondary'>Fechar</button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                ";
+            } else {
+                // Conclui o cadastro
+                $conn->commit();
+                // Modal de sucesso
+                echo "
+                <div class='modal fade show' style='display:block;' tabindex='-1'>
+                  <div class='modal-dialog'>
+                    <div class='modal-content' style='background-color: #d4edda;'>
+                      <div class='modal-header'>
+                        <h5 class='modal-title'>Sucesso</h5>
+                      </div>
+                      <div class='modal-body'>
+                        <p>Imóvel cadastrado com sucesso! Código: {$lastId}</p>
+                        <p><strong>Título:</strong> {$titulo}</p>
+                        <p><strong>Tipo:</strong> {$tipo}</p>
+                        <!-- Adicione os demais campos desejados -->
+                      </div>
+                      <div class='modal-footer'>
+                        <form method='get' action='admin.php'>
+                          <button type='submit' class='btn btn-secondary'>Fechar</button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                ";
+            }
         } else {
+            $conn->rollback();
             echo "Erro ao cadastrar imóvel: " . $conn->error;
         }
     } else {
@@ -89,7 +171,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
-<body>
+<body style="background-color:rgb(195, 198, 201);">
     <div class="container py-4">
         <h1 class="text-center mb-4">Cadastro de Imóveis</h1>
         <form method="POST" enctype="multipart/form-data" class="row g-3">
@@ -144,7 +226,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
 
             <div class="col-12 text-center">
-                <button type="submit" class="btn btn-primary">Cadastrar</button>
+                <button type="submit" class="btn btn-primary">Cadastrar Imóvel</button>
             </div>
         </form>
 

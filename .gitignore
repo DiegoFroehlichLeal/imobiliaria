@@ -22,3 +22,5 @@ Thumbs.db
 # Arquivos temporários e backups
 *.tmp
 *.bak
+
+/uploads/

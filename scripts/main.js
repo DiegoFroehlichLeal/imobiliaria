@@ -54,7 +54,9 @@ document.addEventListener('DOMContentLoaded', async () => {
                         </div>
                         <!-- Última linha: Preço -->
                         <div class="property-price">
+                        <a href="https://wa.me/5547991424641?text=Olá, gostaria de mais informações sobre seus imóveis." target="_blank">
                             <button class="btn btn-primary">${formatarPreco(property.preco)}</button>
+                            </a>
                         </div>
                     </div>
                 </div>

@@ -45,7 +45,10 @@ body {
 .sobre-container ul {
     text-align: justify;
 }
-
+.img-fluid {
+    width: 300px;
+}
+    
 /* Responsividade */
 @media (max-width: 767px) {
     .sobre-container .row {

@@ -32,7 +32,7 @@
         <!-- Texto de direitos autorais e desenvolvido por -->
         <div class="footer-bottom">
             <p class="copy">&copy; <?= date('Y'); ?> Imobiliária IS IMÓVEIS. Todos os direitos reservados. CRECI 5201-J</p>
-            <p class="developed-by">Desenvolvido por: <a href="//www.dflsistemas.com.br" target="_blank" rel="noopener noreferrer"><img src="resources/logoDFL.png" alt="DFL Sistemas" class="dfl-logo"></a></p>
+            <p class="developed-by">Desenvolvido por Diego  <a href="https://wa.me/5547992674636?text=Olá Diego, gostaria de mais informações sobre o desenvolvimento de sites." target="_blank"><img src="resources/logoDFL.png" alt="Diego Froehlich Leal" class="dfl-logo"></a></p>
         </div>
     </div>
 </footer>
