@@ -3,11 +3,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     const filterForm = document.getElementById('filter-form');
 
     function formatarPreco(preco) {
-        if (!isNaN(preco) && preco !== null && preco !== '') {
-            return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(parseFloat(preco));
-        } else {
+        if (isNaN(preco)) {
             return preco;
         }
+        return Number(preco).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
     }
 
     async function loadProperties(filters = {}) {
@@ -19,20 +18,18 @@ document.addEventListener('DOMContentLoaded', async () => {
         propertiesContainer.classList.add('d-flex', 'flex-wrap', 'justify-content-center');
 
         if (properties.length === 0) {
-            propertiesContainer.innerHTML = '<p class="text-center">Não possuímos imóveis com estas características.</p>';
+            propertiesContainer.innerHTML =
+                '<p class="text-center">Não possuímos imóveis com estas características.</p>';
             return;
         }
 
         properties.forEach(property => {
             propertiesContainer.innerHTML += `
                 <div class="card property-card" data-id="${property.id}">
-                    <!-- Seção da imagem -->
                     <div class="card-image">
                         <img src="${property.imagem_principal}" alt="${property.titulo}">
                     </div>
-                    <!-- Seção do conteúdo -->
                     <div class="card-content">
-                        <!-- Primeira linha: Título e Código -->
                         <h5 class="property-title">
                             ${property.titulo}
                             <span>Cód: ${property.id}</span>
@@ -54,8 +51,8 @@ document.addEventListener('DOMContentLoaded', async () => {
                         </div>
                         <!-- Última linha: Preço -->
                         <div class="property-price">
-                        <a href="https://wa.me/5547991424641?text=Olá, gostaria de mais informações sobre seus imóveis." target="_blank">
-                            <button class="btn btn-primary">${formatarPreco(property.preco)}</button>
+                            <a href="https://wa.me/5547991424641?text=Olá,%20gostaria%20de%20mais%20informações%20sobre%20este%20imóvel" target="_blank">
+                                <button class="btn btn-primary">${formatarPreco(property.preco)}</button>
                             </a>
                         </div>
                     </div>
@@ -63,7 +60,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             `;
         });
 
-        // Adiciona evento de clique nos cards
+        // Evento de clique — mantém o funcionamento atual dos cards
         document.querySelectorAll('.property-card').forEach(card => {
             card.addEventListener('click', () => {
                 const propertyId = card.getAttribute('data-id');
@@ -73,13 +70,16 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     async function showPropertyDetails(id) {
+        // Atualiza a URL para deep linking
+        history.pushState({ propertyId: id }, '', `?property=${id}`);
+
         const response = await fetch(`property_details.php?id=${id}`);
         const property = await response.json();
 
         // Garante que property.imagens seja um array
         const imagens = Array.isArray(property.imagens) ? property.imagens : [];
 
-        // Cria o conteúdo do modal
+        // Cria o conteúdo do modal (mantendo o layout original dos detalhes)
         const modalContent = `
             <div class="modal fade" id="propertyModal" tabindex="-1" aria-labelledby="propertyModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
@@ -126,25 +126,31 @@ document.addEventListener('DOMContentLoaded', async () => {
             </div>
         `;
 
-        // Adiciona o modal ao DOM e exibe
         document.body.insertAdjacentHTML('beforeend', modalContent);
-        const propertyModal = new bootstrap.Modal(document.getElementById('propertyModal'));
+        const modalEl = document.getElementById('propertyModal');
+        const propertyModal = new bootstrap.Modal(modalEl);
         propertyModal.show();
 
-        // Remove o modal do DOM após ser fechado
-        document.getElementById('propertyModal').addEventListener('hidden.bs.modal', function () {
+        // Ao fechar o modal, remove-o e restaura a URL original
+        modalEl.addEventListener('hidden.bs.modal', function () {
+            history.pushState({}, '', window.location.pathname);
             this.remove();
         });
     }
 
-    // Carrega os imóveis ao iniciar
+    // Carrega os imóveis ao iniciar a página
     loadProperties();
 
-    // Aplica filtros ao formulário
-    filterForm.addEventListener('submit', (event) => {
+    filterForm.addEventListener('submit', event => {
         event.preventDefault();
         const formData = new FormData(filterForm);
         const filters = Object.fromEntries(formData);
         loadProperties(filters);
     });
+
+    // Verifica se a URL possui o parâmetro 'property' e exibe o modal automaticamente
+    const params = new URLSearchParams(window.location.search);
+    if (params.has('property')) {
+        showPropertyDetails(params.get('property'));
+    }
 });

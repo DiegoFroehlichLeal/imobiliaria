@@ -2,7 +2,9 @@
   <div class="header-container">
     <!-- Item 1: Logo -->
     <div class="grid-item logo">
+      <a href="index.php">
       <img src="resources/LOGO500X500.png" alt="Logo Imobiliária" id="logo">
+      </a>
     </div>
     <!-- Item 2 e 3: Ícone e texto do primeiro telefone -->
     <div class="grid-item contact">

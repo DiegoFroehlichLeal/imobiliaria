@@ -101,21 +101,24 @@ $tipos_imoveis_fixos = ['Casa', 'Apartamento', 'Geminado', 'Terreno', 'Galpão',
   </div>
 
   <!-- Seção de banners de destaque -->
-  <!-- <div id="featuredBanners" class="carousel slide my-5 mx-auto" data-bs-ride="carousel">
+  <div id="featuredBanners" class="carousel slide my-5 mx-auto" data-bs-ride="carousel">
     <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img src="banners/FERIASISIMOVEIS.png" class="d-block w-100" alt="Banner 2">
-      </div>
+        <div class="carousel-item active">
+            <video class="d-block w-100" autoplay muted loop playsinline style="height: 400px;">
+                <source src="videos/JARDIM DO GRANT (Normal).mp4" type="video/mp4">
+                Seu navegador não suporta o elemento de vídeo.
+            </video>
+        </div>
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#featuredBanners" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Anterior</span>
+    <!-- <button class="carousel-control-prev" type="button" data-bs-target="#featuredBanners" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Anterior</span>
     </button>
     <button class="carousel-control-next" type="button" data-bs-target="#featuredBanners" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Próximo</span>
-    </button>
-  </div> -->
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Próximo</span>
+    </button> -->
+  </div>
 
   <!-- Lista de imóveis -->
   <div class="container my-5">
